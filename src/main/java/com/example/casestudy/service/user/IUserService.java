@@ -1,4 +1,4 @@
-package com.example.casestudy.service;
+package com.example.casestudy.service.user;
 
 import com.example.casestudy.model.User;
 

@@ -1,4 +1,4 @@
-package com.example.casestudy.service;
+package com.example.casestudy.service.user;
 
 import com.example.casestudy.model.User;
 import com.example.casestudy.repository.IUserRepository;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements IUserService{
+
     @Autowired
     private IUserRepository userRepository;
 
