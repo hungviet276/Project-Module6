@@ -20,9 +20,9 @@ public class PostController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post product) {
-        product.setPostId(id);
-        return new ResponseEntity<>(postService.savePost(product), HttpStatus.OK);
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post post) {
+        post.setPostId(id);
+        return new ResponseEntity<>(postService.savePost(post), HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{id}")
@@ -36,13 +36,13 @@ public class PostController {
         return new ResponseEntity<>(postService.findAllPost(), HttpStatus.OK);
     }
 
-    @GetMapping("findPostById/{id}")
-    public ResponseEntity<Post> findPostById(@PathVariable Long id) {
-        return new ResponseEntity<>(postService.findPostByPostId(id), HttpStatus.OK);
+    @GetMapping("findPostById/{postId}")
+    public ResponseEntity<Post> findPostById(@PathVariable Long postId) {
+        return new ResponseEntity<>(postService.findPostByPostId(postId), HttpStatus.OK);
     }
 
-    @GetMapping("findPostByPosterId/{id}")
-    public ResponseEntity<Iterable<Post>> findPostByPosterId(@PathVariable Long id) {
-        return new ResponseEntity<>(postService.findPostByPosterId(id), HttpStatus.OK);
+    @GetMapping("findPostByPosterId/{posterId}")
+    public ResponseEntity<Iterable<Post>> findPostByPosterId(@PathVariable Long posterId) {
+        return new ResponseEntity<>(postService.findPostByPosterId(posterId), HttpStatus.OK);
     }
 }
