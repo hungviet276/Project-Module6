@@ -4,8 +4,10 @@ import com.example.casestudy.model.Relationship;
 import com.example.casestudy.model.Status;
 import com.example.casestudy.repository.IRelationshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class RalationshipService implements IRelationshipService{
+@Service
+public class RelationshipService implements IRelationshipService{
     @Autowired
     private IRelationshipRepository iRelationshipRepository;
     @Override

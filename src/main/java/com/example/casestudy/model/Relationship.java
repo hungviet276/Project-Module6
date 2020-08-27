@@ -16,6 +16,11 @@ public class Relationship {
 
     public Relationship() {
     }
+    public Relationship(Long relatingUserId,Long relatedUserId ) {
+
+        this.relatingUserId = relatingUserId;
+        this.relatedUserId = relatedUserId;
+    }
 
     public Long getId() {
         return id;

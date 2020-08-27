@@ -5,7 +5,7 @@ import com.example.casestudy.model.Status;
 import com.example.casestudy.model.User;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface IRelationshipService {
     Relationship saveRelationship(Relationship relationship);
 
