@@ -21,7 +21,7 @@ public class User {
 
     private String userName;
 
-    private String userNickName;
+    private String account;
 
     private String userSex;
 
@@ -40,20 +40,20 @@ public class User {
     public User() {
     }
 
-    public User(String userName,String userSex,String userNickName, String email, String password) {
-        this.userNickName = userNickName;
+    public User(String userName, String userSex, String account, String email, String password) {
+        this.account = account;
         this.userEmail = email;
         this.userPassword = password;
         this.userName = userName;
         this.userSex = userSex;
     }
 
-    public User(Long userId, String userEmail, String userPassword, String userName, String userNickName, String userSex, String userAddress, String userAvatar, String userCoverPhoto) {
+    public User(Long userId, String userEmail, String userPassword, String userName, String account, String userSex, String userAddress, String userAvatar, String userCoverPhoto) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userName = userName;
-        this.userNickName = userNickName;
+        this.account = account;
         this.userSex = userSex;
         this.userAddress = userAddress;
         this.userAvatar = userAvatar;
@@ -92,12 +92,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserNickName() {
-        return userNickName;
+    public String getAccount() {
+        return account;
     }
 
-    public void setUserNickName(String userNickName) {
-        this.userNickName = userNickName;
+    public void setAccount(String userNickName) {
+        this.account = userNickName;
     }
 
     public String getUserSex() {
