@@ -1,13 +1,14 @@
-package com.example.casestudy.service;
+package com.example.casestudy.service.relationship;
 
 import com.example.casestudy.model.Relationship;
 import com.example.casestudy.model.Status;
 import com.example.casestudy.repository.IRelationshipRepository;
+import com.example.casestudy.service.relationship.IRelationshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RelationshipService implements IRelationshipService{
+public class RelationshipService implements IRelationshipService {
     @Autowired
     private IRelationshipRepository iRelationshipRepository;
     @Override

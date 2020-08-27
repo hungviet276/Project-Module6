@@ -1,4 +1,4 @@
-package com.example.casestudy.service;
+package com.example.casestudy.service.relationship;
 
 import com.example.casestudy.model.Relationship;
 import com.example.casestudy.model.Status;

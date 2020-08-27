@@ -1,7 +1,8 @@
-package com.example.casestudy.service;
+package com.example.casestudy.service.status;
 
 import com.example.casestudy.model.Status;
 import com.example.casestudy.repository.IStatusRepository;
+import com.example.casestudy.service.status.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
