@@ -1,7 +1,8 @@
 package com.example.casestudy.model.payload.request;
 
 
-import javax.validation.constraints.Email;
+import com.example.casestudy.validatior.email.ValidEmail;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class SignupRequest {
 
     @NotBlank
     @Size(max = 50)
-    @Email
+    @ValidEmail
     private String email;
 
     private Set<String> role;
