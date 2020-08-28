@@ -9,16 +9,12 @@ import java.util.Set;
 
 public class SignupRequest {
     @NotBlank
-    @Size(min = 3, max = 20)
-    private String fullname;
+    @Size(min = 2, max = 20)
+    private String username;
 
     @NotBlank
     @Size(max = 20)
     private String sex;
-
-    @NotBlank
-    @Size(min = 3, max = 20)
-    private String username;
 
     @NotBlank
     @Size(max = 50)
@@ -61,14 +57,6 @@ public class SignupRequest {
 
     public void setRole(Set<String> role) {
         this.role = role;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public String getSex() {

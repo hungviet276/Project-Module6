@@ -17,5 +17,5 @@ public interface IUserService {
 
     Iterable<User> findUserByName(String input);
 
-    Optional<User> findByUserNickName(String nickName);
+    Optional<User> findByUserName(String userName);
 }
