@@ -1,6 +1,8 @@
 package com.example.casestudy.model.payload.request;
 
-import javax.validation.constraints.Email;
+
+import com.example.casestudy.validatior.email.ValidEmail;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -8,17 +10,25 @@ import java.util.Set;
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
+    private String fullname;
+
+    @NotBlank
+    @Size(max = 20)
+    private String sex;
+
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String username;
 
     @NotBlank
     @Size(max = 50)
-    @Email
+    @ValidEmail
     private String email;
 
     private Set<String> role;
 
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size(min = 6, max = 20)
     private String password;
 
     public String getUsername() {
@@ -51,6 +61,22 @@ public class SignupRequest {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }
 

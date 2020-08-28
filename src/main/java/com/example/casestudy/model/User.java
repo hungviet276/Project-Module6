@@ -40,10 +40,12 @@ public class User {
     public User() {
     }
 
-    public User(String userNickName, String email, String password) {
+    public User(String userName, String userSex, String userNickName, String email, String password) {
         this.userNickName = userNickName;
         this.userEmail = email;
         this.userPassword = password;
+        this.userName = userName;
+        this.userSex = userSex;
     }
 
     public User(Long userId, String userEmail, String userPassword, String userName, String userNickName, String userSex, String userAddress, String userAvatar, String userCoverPhoto) {
