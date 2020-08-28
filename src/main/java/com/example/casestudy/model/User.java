@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "userNickName"),
+                @UniqueConstraint(columnNames = "userName"),
                 @UniqueConstraint(columnNames = "userEmail")
         })
 public class User {
@@ -15,15 +15,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    private String userName;
+
     private String userEmail;
 
     private String userPassword;
 
-    private String userName;
-
-    private String userNickName;
-
     private String userSex;
+
+    private String dateOfBirth;
+
+    private String about;
 
     private String userAddress;
 
@@ -40,24 +42,25 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String userSex, String userNickName, String email, String password) {
-        this.userNickName = userNickName;
+    public User(String userName, String userSex, String email, String password) {
+        this.userName = userName;
         this.userEmail = email;
         this.userPassword = password;
-        this.userName = userName;
         this.userSex = userSex;
     }
 
-    public User(Long userId, String userEmail, String userPassword, String userName, String userNickName, String userSex, String userAddress, String userAvatar, String userCoverPhoto) {
+    public User(Long userId, String userName, String userEmail, String userPassword, String userSex, String dateOfBirth, String about, String userAddress, String userAvatar, String userCoverPhoto, Set<Role> roles) {
         this.userId = userId;
+        this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
-        this.userName = userName;
-        this.userNickName = userNickName;
         this.userSex = userSex;
+        this.dateOfBirth = dateOfBirth;
+        this.about = about;
         this.userAddress = userAddress;
         this.userAvatar = userAvatar;
         this.userCoverPhoto = userCoverPhoto;
+        this.roles = roles;
     }
 
     public Long getUserId() {
@@ -92,20 +95,28 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserNickName() {
-        return userNickName;
-    }
-
-    public void setUserNickName(String userNickName) {
-        this.userNickName = userNickName;
-    }
-
     public String getUserSex() {
         return userSex;
     }
 
     public void setUserSex(String sex) {
         this.userSex = sex;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public String getUserAddress() {
