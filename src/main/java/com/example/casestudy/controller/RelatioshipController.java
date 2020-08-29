@@ -33,11 +33,11 @@ public class RelatioshipController {
     public ResponseEntity<Iterable<Relationship>> findAll() {
         return new ResponseEntity<>(relationshipService.findAllRelationship(), HttpStatus.OK);
     }
-    @PostMapping("/create/{relatingId}/{relatedId}")
-    public ResponseEntity<Relationship> addInviteFriend(@PathVariable Long relatingId,@PathVariable Long relatedId){
-        Relationship relationship = this.checkRelationship(relatingId,relatedId);
+    @PostMapping("/create/{relatingId}")
+    public ResponseEntity<Relationship> addInviteFriend(@PathVariable Long relatingId,@RequestBody User user){
+        Relationship relationship = this.checkRelationship(relatingId,user.getUserId());
         if (relationship==null){
-            Relationship relationship1 = new Relationship(relatingId,relatedId);
+            Relationship relationship1 = new Relationship(relatingId,user.getUserId());
             Status status = statusService.findStatusById(1L);
             relationship1.setStatus(status);
             relationshipService.saveRelationship(relationship1);
@@ -53,6 +53,13 @@ public class RelatioshipController {
         Relationship relationship = relationshipService.findRelationshipById(relationshipId);
         relationship.setStatus(statusService.findStatusById(statusId));
         return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
+    }
+    @PutMapping("/edit/{relatedId}/{statusId}")
+    public ResponseEntity<Relationship> acceptInviteFriend2(@PathVariable Long relatedId,@PathVariable Long statusId,@RequestBody User user){
+      Relationship relationship = relationshipService.findRelationshipByRelatingUserIdAndRelatedUserId(user.getUserId(),relatedId);
+      relationship.setStatus(statusService.findStatusById(statusId));
+      return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
+
     }
 
     @GetMapping("/listFriend/{userId}")
