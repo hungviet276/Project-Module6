@@ -48,17 +48,19 @@ public class RelatioshipController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/edit/{relationshipId}/{statusId}")
-    public ResponseEntity<Relationship> acceptInviteFriend(@PathVariable Long relationshipId,@PathVariable Long statusId){
-        Relationship relationship = relationshipService.findRelationshipById(relationshipId);
-        relationship.setStatus(statusService.findStatusById(statusId));
-        return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
-    }
     @PutMapping("/edit/{relatedId}/{statusId}")
     public ResponseEntity<Relationship> acceptInviteFriend2(@PathVariable Long relatedId,@PathVariable Long statusId,@RequestBody User user){
       Relationship relationship = relationshipService.findRelationshipByRelatingUserIdAndRelatedUserId(user.getUserId(),relatedId);
       relationship.setStatus(statusService.findStatusById(statusId));
       return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
+
+    }
+
+    @PutMapping("/unfriend/{relatedId}/{statusId}")
+    public ResponseEntity<Relationship> unFriend(@PathVariable Long relatedId,@PathVariable Long statusId,@RequestBody User user){
+        Relationship relationship = this.checkRelationship(user.getUserId(),relatedId);
+        relationship.setStatus(statusService.findStatusById(statusId));
+        return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
 
     }
 
