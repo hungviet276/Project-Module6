@@ -29,6 +29,8 @@ public class User {
 
     private String userAddress;
 
+    private String userPhoneNumber;
+
     private String userAvatar;
 
     private String userCoverPhoto;
@@ -49,7 +51,7 @@ public class User {
         this.userSex = userSex;
     }
 
-    public User(Long userId, String userName, String userEmail, String userPassword, String userSex, String dateOfBirth, String about, String userAddress, String userAvatar, String userCoverPhoto, Set<Role> roles) {
+    public User(Long userId, String userName, String userEmail, String userPassword, String userSex, String dateOfBirth, String about, String userAddress, String userPhoneNumber, String userAvatar, String userCoverPhoto, Set<Role> roles) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -58,6 +60,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.about = about;
         this.userAddress = userAddress;
+        this.userPhoneNumber = userPhoneNumber;
         this.userAvatar = userAvatar;
         this.userCoverPhoto = userCoverPhoto;
         this.roles = roles;
@@ -125,6 +128,14 @@ public class User {
 
     public void setUserAddress(String address) {
         this.userAddress = address;
+    }
+
+    public String getUserPhoneNumber() {
+        return userPhoneNumber;
+    }
+
+    public void setUserPhoneNumber(String userPhoneNumber) {
+        this.userPhoneNumber = userPhoneNumber;
     }
 
     public String getUserAvatar() {
