@@ -5,6 +5,7 @@ import com.example.casestudy.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -50,5 +54,13 @@ public class UserController {
     @GetMapping("findUserByName/{name}")
     public ResponseEntity<Iterable<User>> findByNameContains(@PathVariable String name) {
         return new ResponseEntity<>(userService.findUserByName(name), HttpStatus.OK);
+    }
+
+    @PostMapping("/changePassword/{id}")
+    public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestBody String newPassword) {
+        User user = this.userService.findUserById(id);
+        user.setUserPassword(encoder.encode(newPassword));
+        this.userService.saveUser(user);
+        return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
 }
