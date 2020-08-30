@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/post")
 public class PostController {
@@ -16,6 +19,7 @@ public class PostController {
 
     @PostMapping("/create")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        post.setPostTime(timeConvert());
         return new ResponseEntity<>(postService.savePost(post), HttpStatus.CREATED);
     }
 
@@ -44,5 +48,11 @@ public class PostController {
     @GetMapping("findPostByPosterId/{posterId}")
     public ResponseEntity<Iterable<Post>> findPostByPosterId(@PathVariable Long posterId) {
         return new ResponseEntity<>(postService.findPostByPosterId(posterId), HttpStatus.OK);
+    }
+
+    private String timeConvert() {
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return myDateObj.format(myFormatObj);
     }
 }
