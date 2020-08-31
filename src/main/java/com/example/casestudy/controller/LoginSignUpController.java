@@ -3,16 +3,20 @@ package com.example.casestudy.controller;
 
 import com.example.casestudy.config.security.JwtUtils;
 import com.example.casestudy.model.ERole;
+import com.example.casestudy.model.RefreshToken;
 import com.example.casestudy.model.Role;
 import com.example.casestudy.model.User;
 import com.example.casestudy.model.payload.request.LoginRequest;
+import com.example.casestudy.model.payload.request.RefreshTokenRequest;
 import com.example.casestudy.model.payload.request.SignupRequest;
 import com.example.casestudy.model.payload.respone.JwtResponse;
 import com.example.casestudy.model.payload.respone.MessageResponse;
 import com.example.casestudy.repository.IRoleRepository;
 import com.example.casestudy.repository.IUserRepository;
+import com.example.casestudy.service.refreshtoken.RefreshTokenService;
 import com.example.casestudy.service.user.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,6 +52,9 @@ public class LoginSignUpController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    private RefreshTokenService refreshTokenService;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -62,7 +69,9 @@ public class LoginSignUpController {
         roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-
+        RefreshToken refreshToken = new RefreshToken();
+        refreshToken.setToken(jwt);
+        refreshTokenService.generateRefreshToken(refreshToken);
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
@@ -112,5 +121,10 @@ public class LoginSignUpController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.deleteRefreshToken(refreshTokenRequest.getToken());
+        return ResponseEntity.ok(new MessageResponse("Refresh token delete successfully"));
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -53,6 +54,15 @@ public class UserController {
     @GetMapping("findUserByName/{name}")
     public ResponseEntity<Iterable<User>> findByNameContains(@PathVariable String name) {
         return new ResponseEntity<>(userService.findUserByName(name), HttpStatus.OK);
+    }
+
+    @PostMapping("/combinePassword/{id}")
+    public ResponseEntity<HttpStatus> combinePassword(@PathVariable Long id, @RequestBody String password) {
+        User user = this.userService.findUserById(id);
+        if (encoder.matches(password, user.getUserPassword())) {
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/changePassword/{id}")

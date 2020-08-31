@@ -28,6 +28,14 @@ public class Post {
     public Post() {
     }
 
+    public Post(Long postId, Long posterId, String textPost, int postLike, int postDislike){
+        this.postId = postId;
+        this.posterId = posterId;
+        this.textPost = textPost;
+        this.postLike = postLike;
+        this.postDislike = postDislike;
+    }
+
     public Post(Long postId, Long posterId, String textPost, String imagePost, String videoPost, String linkPost, String postTime, int postLike, int postDislike) {
         this.postId = postId;
         this.posterId = posterId;
