@@ -56,6 +56,15 @@ public class UserController {
         return new ResponseEntity<>(userService.findUserByName(name), HttpStatus.OK);
     }
 
+    @PostMapping("/combinePassword/{id}")
+    public ResponseEntity<HttpStatus> combinePassword(@PathVariable Long id, @RequestBody String password) {
+        User user = this.userService.findUserById(id);
+        if (encoder.matches(password, user.getUserPassword())) {
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+
     @PostMapping("/changePassword/{id}")
     public ResponseEntity<String> changePassword(@PathVariable Long id, @RequestBody String newPassword) {
         User user = this.userService.findUserById(id);
