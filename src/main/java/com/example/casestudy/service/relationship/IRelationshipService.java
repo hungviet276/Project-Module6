@@ -19,5 +19,6 @@ public interface IRelationshipService {
 
     Relationship findRelationshipByRelatingUserIdAndRelatedUserId (Long relatingUserId, Long relatedUserId);
     Iterable<Relationship> findAllByRelatingUserIdOrRelatedUserIdAndStatus (Long relatingUserId, Long relatedUserId ,Status status);
+    Iterable<Relationship> findAllByRelatingUserIdAndStatusOrRelatedUserIdAndStatus(Long relatingUserId,Status status1, Long relatedUserId ,Status status2);
 
 }
