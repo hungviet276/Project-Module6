@@ -46,6 +46,11 @@ public class RelationshipService implements IRelationshipService {
         return iRelationshipRepository.findAllByRelatingUserIdOrRelatedUserIdAndStatus(relatingUserId,relatedUserId,status);
     }
 
+    @Override
+    public Iterable<Relationship> findAllByRelatingUserIdAndStatusOrRelatedUserIdAndStatus(Long relatingUserId, Status status1, Long relatedUserId, Status status2) {
+        return iRelationshipRepository.findAllByRelatingUserIdAndStatusOrRelatedUserIdAndStatus(relatingUserId,status1,relatedUserId,status2);
+    }
+
 
 }
 

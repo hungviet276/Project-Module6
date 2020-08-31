@@ -66,7 +66,7 @@ public class RelatioshipController {
 
     @GetMapping("/listFriend/{userId}")
     public ResponseEntity<Iterable<User>> findAllFriend(@PathVariable Long userId) {
-        Iterable<Relationship> relationships = relationshipService.findAllByRelatingUserIdOrRelatedUserIdAndStatus(userId,userId,statusService.findStatusById(2l));
+        Iterable<Relationship> relationships = relationshipService.findAllByRelatingUserIdAndStatusOrRelatedUserIdAndStatus(userId,statusService.findStatusById(2L),userId,statusService.findStatusById(2L));
 
         List<User> users = new ArrayList<>();
         for (Relationship relationship:relationships
