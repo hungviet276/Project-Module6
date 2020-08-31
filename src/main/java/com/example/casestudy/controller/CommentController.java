@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
@@ -16,6 +19,7 @@ public class CommentController {
 
     @PostMapping("/create")
     public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+        comment.setCommentTime(timeConvert());
         return new ResponseEntity<>(commentService.saveComment(comment), HttpStatus.CREATED);
     }
 
@@ -49,5 +53,11 @@ public class CommentController {
     @GetMapping("findCommentsByCommenterId/{commenterId}")
     public ResponseEntity<Iterable<Comment>> findCommentsByCommenterId(@PathVariable Long commenterId) {
         return new ResponseEntity<>(commentService.findCommentByCommenterId(commenterId), HttpStatus.OK);
+    }
+
+    private String timeConvert() {
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        return myDateObj.format(myFormatObj);
     }
 }
