@@ -123,8 +123,8 @@ public class LoginSignUpController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+    public ResponseEntity<?> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         refreshTokenService.deleteRefreshToken(refreshTokenRequest.getToken());
-        return ResponseEntity.status(HttpStatus.OK).body("Refresh token delete successfully");
+        return ResponseEntity.ok(new MessageResponse("Refresh token delete successfully"));
     }
 }
