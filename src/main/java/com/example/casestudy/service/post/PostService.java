@@ -3,6 +3,7 @@ package com.example.casestudy.service.post;
 import com.example.casestudy.model.Post;
 import com.example.casestudy.repository.IPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,7 +25,7 @@ public class PostService implements IPostService{
 
     @Override
     public Iterable<Post> findAllPost() {
-        return postRepository.findAll();
+        return postRepository.findAll(Sort.by(Sort.Direction.DESC,"postId"));
     }
 
     @Override
