@@ -2,7 +2,10 @@ package com.example.casestudy.controller;
 
 import com.example.casestudy.model.Post;
 import com.example.casestudy.service.post.IPostService;
+import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,7 +44,7 @@ public class PostController {
     }
 
     @GetMapping("findPostById/{postId}")
-    public ResponseEntity<Post> findPostById(@PathVariable Long postId) {
+    public ResponseEntity<Post> findPostById(@SortDefault(direction = Sort.Direction.DESC,sort = "postId") @PathVariable Long postId) {
         return new ResponseEntity<>(postService.findPostByPostId(postId), HttpStatus.OK);
     }
 

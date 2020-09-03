@@ -90,6 +90,15 @@ public class RelatioshipController {
 
         return new ResponseEntity<Iterable<User>>(users, HttpStatus.OK);
     }
+    @GetMapping("/checkFriend/{relatingId}/{relatedId}")
+    public ResponseEntity<Long> checkFriend(@PathVariable Long relatingId,@PathVariable Long relatedId){
+        Long status;
+        Relationship relationship = this.checkRelationship(relatingId,relatedId);
+        if (relationship!=null){
+            status = relationship.getStatus().getId();
+        }else status=0l;
+        return new ResponseEntity<>(status, HttpStatus.OK);
+    }
 
     public Relationship checkRelationship(Long relatingId, Long relatedId){
         Relationship relationship ;
