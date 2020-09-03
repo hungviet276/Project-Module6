@@ -37,4 +37,11 @@ public class PostService implements IPostService{
     public Iterable<Post> findPostByPosterId(Long userId) {
         return postRepository.findByPosterId(userId);
     }
+
+    @Override
+    public Iterable<Post> findByPosterIdAndTextPostContains(Long id, String textPost) {
+        return postRepository.findByPosterIdAndTextPostContains(id,textPost);
+    }
+
+
 }

@@ -58,4 +58,9 @@ public class PostController {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         return myDateObj.format(myFormatObj);
     }
+
+    @GetMapping("/searchPost/{posterId}/{textPost}")
+    public ResponseEntity<Iterable<Post>> searchPostByTextPost(@PathVariable Long posterId, @PathVariable String textPost) {
+        return new ResponseEntity<>(postService.findByPosterIdAndTextPostContains(posterId,textPost), HttpStatus.OK);
+    }
 }

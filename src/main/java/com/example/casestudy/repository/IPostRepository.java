@@ -8,5 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface IPostRepository extends JpaRepository<Post, Long> {
     Iterable<Post> findByPosterId(Long userId);
 
+    Iterable<Post> findByPosterIdAndTextPostContains(Long id,String textPost);
+
+
 
 }

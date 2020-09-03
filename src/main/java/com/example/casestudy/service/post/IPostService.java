@@ -12,4 +12,6 @@ public interface IPostService {
     Post findPostByPostId(Long id);
 
     Iterable<Post> findPostByPosterId(Long userId);
+
+    Iterable<Post> findByPosterIdAndTextPostContains(Long id,String textPost);
 }

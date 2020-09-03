@@ -21,6 +21,8 @@ public class Post {
 
     private String postTime;
 
+    private Long status;
+
     private int postLike;
 
     private int postDislike;
@@ -28,15 +30,16 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long postId, Long posterId, String textPost, int postLike, int postDislike){
+    public Post(Long postId, Long posterId, String textPost, int postLike, int postDislike, Long status){
         this.postId = postId;
         this.posterId = posterId;
         this.textPost = textPost;
         this.postLike = postLike;
         this.postDislike = postDislike;
+        this.status = status;
     }
 
-    public Post(Long postId, Long posterId, String textPost, String imagePost, String videoPost, String linkPost, String postTime, int postLike, int postDislike) {
+    public Post(Long postId, Long posterId, String textPost, String imagePost, String videoPost, String linkPost, String postTime, int postLike, int postDislike,Long status) {
         this.postId = postId;
         this.posterId = posterId;
         this.textPost = textPost;
@@ -46,6 +49,15 @@ public class Post {
         this.postTime = postTime;
         this.postLike = postLike;
         this.postDislike = postDislike;
+        this.status = status;
+    }
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     public Long getPostId() {
