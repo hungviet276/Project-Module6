@@ -3,7 +3,7 @@ package com.example.casestudy.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Like-Post")
+@Table(name = "likepost")
 public class LikePost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
