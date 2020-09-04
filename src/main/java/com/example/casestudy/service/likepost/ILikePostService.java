@@ -10,4 +10,6 @@ public interface ILikePostService {
     Iterable<LikePost> findAllLikePost();
 
     LikePost findLikePostById(Long id);
+
+    Iterable<LikePost> findLikePostByPostId(Long postId);
 }

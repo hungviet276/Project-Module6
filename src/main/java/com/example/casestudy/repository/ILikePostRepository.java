@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ILikePostRepository extends JpaRepository<LikePost,Long> {
+    Iterable<LikePost> findLikePostsByPostId(Long postId);
 }

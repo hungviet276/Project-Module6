@@ -29,4 +29,9 @@ public class LikePostService implements ILikePostService{
     public LikePost findLikePostById(Long id) {
         return likePostRepository.getOne(id);
     }
+
+    @Override
+    public Iterable<LikePost> findLikePostByPostId(Long postId) {
+        return likePostRepository.findLikePostsByPostId(postId);
+    }
 }
