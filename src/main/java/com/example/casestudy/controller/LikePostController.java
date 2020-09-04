@@ -1,6 +1,5 @@
 package com.example.casestudy.controller;
 
-import com.example.casestudy.model.Comment;
 import com.example.casestudy.model.LikePost;
 import com.example.casestudy.service.likepost.ILikePostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ public class LikePostController {
     ILikePostService likePostService;
 
     @PostMapping("/create")
-    public ResponseEntity<LikePost> createLikePost(LikePost likePost) {
-        return new ResponseEntity(likePostService.saveLikePost(likePost), HttpStatus.OK);
+    public ResponseEntity<LikePost> createLikePost(@RequestBody LikePost likePost) {
+        return new ResponseEntity<>(likePostService.saveLikePost(likePost), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
@@ -32,8 +31,13 @@ public class LikePostController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
-    public  ResponseEntity<Iterable<LikePost>> getAllLikePost() {
+    @GetMapping("/")
+    public ResponseEntity<Iterable<LikePost>> getAllLikePost() {
         return new ResponseEntity<>(likePostService.findAllLikePost(),HttpStatus.OK);
+    }
+
+    @GetMapping("/findByPostId/{postId}")
+    public ResponseEntity<Iterable<LikePost>> findLikePostByPostId(@PathVariable Long postId) {
+        return new ResponseEntity<>(likePostService.findLikePostByPostId(postId),HttpStatus.OK);
     }
 }

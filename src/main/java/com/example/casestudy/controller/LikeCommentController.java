@@ -15,8 +15,8 @@ public class LikeCommentController {
     ILikeCommentService likeCommentService;
 
     @PostMapping("/create")
-    public ResponseEntity<LikeComment> createLikeComment(LikeComment likeComment) {
-        return new ResponseEntity(likeCommentService.saveLikeComment(likeComment), HttpStatus.OK);
+    public ResponseEntity<LikeComment> createLikeComment(@RequestBody LikeComment likeComment) {
+        return new ResponseEntity<>(likeCommentService.saveLikeComment(likeComment), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
@@ -31,7 +31,7 @@ public class LikeCommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public  ResponseEntity<Iterable<LikeComment>> getAllLikeComment() {
         return new ResponseEntity<>(likeCommentService.findAllLikeComment(),HttpStatus.OK);
     }
