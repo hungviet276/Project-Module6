@@ -10,4 +10,6 @@ public interface ILikeCommentService {
     Iterable<LikeComment> findAllLikeComment();
 
     LikeComment findLikeCommentById(Long id);
+
+    Iterable<LikeComment> findLikeCommentsByCommentId(Long id);
 }
