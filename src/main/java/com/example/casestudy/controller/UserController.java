@@ -72,4 +72,9 @@ public class UserController {
         this.userService.saveUser(user);
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
+
+    @PostMapping("/exists")
+    public ResponseEntity<Boolean> checkUserExist(@RequestBody String email){
+        return  new ResponseEntity<>(userService.emailExist(email), HttpStatus.OK);
+    }
 }

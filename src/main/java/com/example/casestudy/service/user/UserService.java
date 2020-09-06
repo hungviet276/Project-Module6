@@ -48,4 +48,9 @@ public class UserService implements IUserService{
     public Optional<User> findByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
+
+    @Override
+    public boolean emailExist(String email) {
+        return userRepository.existsByUserEmail(email);
+    }
 }
