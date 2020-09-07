@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -62,5 +64,17 @@ public class PostController {
     @GetMapping("/searchPost/{posterId}/{textPost}")
     public ResponseEntity<Iterable<Post>> searchPostByTextPost(@PathVariable Long posterId, @PathVariable String textPost) {
         return new ResponseEntity<>(postService.findByPosterIdAndTextPostContains(posterId,textPost), HttpStatus.OK);
+    }
+
+    @GetMapping("findImageByPosterId/{posterId}")
+    public ResponseEntity<Iterable<String>> findImageByPosterId(@PathVariable Long posterId) {
+        List<String> images = new ArrayList<>();
+        Iterable<Post> posts = postService.findPostByPosterId(posterId);
+        for (Post post: posts) {
+            if (!post.getImagePost().isEmpty() && post.getImagePost() != null) {
+                images.add(post.getImagePost());
+            }
+        }
+        return new ResponseEntity<>(images, HttpStatus.OK);
     }
 }
