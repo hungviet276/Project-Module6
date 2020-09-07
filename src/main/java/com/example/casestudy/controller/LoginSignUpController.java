@@ -1,6 +1,5 @@
 package com.example.casestudy.controller;
 
-
 import com.example.casestudy.config.security.JwtUtils;
 import com.example.casestudy.model.ERole;
 import com.example.casestudy.model.RefreshToken;
@@ -16,7 +15,6 @@ import com.example.casestudy.repository.IUserRepository;
 import com.example.casestudy.service.refreshtoken.RefreshTokenService;
 import com.example.casestudy.service.user.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
