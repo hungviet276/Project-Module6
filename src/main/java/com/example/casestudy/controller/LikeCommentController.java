@@ -16,7 +16,7 @@ public class LikeCommentController {
 
     @PostMapping("/create")
     public ResponseEntity<LikeComment> createLikeComment(LikeComment likeComment) {
-        return new ResponseEntity(likeCommentService.saveLikeComment(likeComment), HttpStatus.OK);
+        return new ResponseEntity<>(likeCommentService.saveLikeComment(likeComment), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")

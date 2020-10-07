@@ -1,6 +1,5 @@
 package com.example.casestudy.controller;
 
-import com.example.casestudy.model.Comment;
 import com.example.casestudy.model.LikePost;
 import com.example.casestudy.service.likepost.ILikePostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class LikePostController {
 
     @PostMapping("/create")
     public ResponseEntity<LikePost> createLikePost(LikePost likePost) {
-        return new ResponseEntity(likePostService.saveLikePost(likePost), HttpStatus.OK);
+        return new ResponseEntity<>(likePostService.saveLikePost(likePost), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
