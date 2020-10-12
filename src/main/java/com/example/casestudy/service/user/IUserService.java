@@ -18,4 +18,6 @@ public interface IUserService {
     Iterable<User> findUserByName(String input);
 
     Optional<User> findByUserName(String userName);
+
+    boolean emailExist(String email);
 }

@@ -2,6 +2,7 @@ package com.example.casestudy.controller;
 
 import com.example.casestudy.model.Post;
 import com.example.casestudy.service.post.IPostService;
+import javafx.geometry.Pos;
 import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -62,5 +65,42 @@ public class PostController {
     @GetMapping("/searchPost/{posterId}/{textPost}")
     public ResponseEntity<Iterable<Post>> searchPostByTextPost(@PathVariable Long posterId, @PathVariable String textPost) {
         return new ResponseEntity<>(postService.findByPosterIdAndTextPostContains(posterId,textPost), HttpStatus.OK);
+    }
+
+    @GetMapping("findImageByPosterId/{posterId}")
+    public ResponseEntity<Iterable<String>> findImageByPosterId(@PathVariable Long posterId) {
+        List<String> images = new ArrayList<>();
+        Iterable<Post> posts = postService.findPostByPosterId(posterId);
+        for (Post post: posts) {
+            if (!post.getImagePost().isEmpty() && post.getImagePost() != null) {
+                images.add(post.getImagePost());
+            }
+        }
+        return new ResponseEntity<>(images, HttpStatus.OK);
+    }
+
+    @GetMapping("/getPostLimited/{fromIndex}")
+    public ResponseEntity<Iterable<Post>> findPostLimited(@PathVariable int fromIndex) {
+        Iterable<Post> allPost = postService.findAllPost();
+        List<Post> postList = new ArrayList<>();
+        allPost.forEach(postList::add);
+        List<Post> limitedPost = new ArrayList<>();
+        for (int i = fromIndex; i < fromIndex + 5 && i < postList.size() ; i++) {
+            limitedPost.add(postList.get(i));
+        }
+        return new ResponseEntity<>( limitedPost, HttpStatus.OK);
+    }
+
+
+    @GetMapping("findImageByPosterIdLimited/{posterId}/{fromIndex}")
+    public ResponseEntity<Iterable<Post>> findPostByPosterId(@PathVariable Long posterId, @PathVariable int fromIndex) {
+        Iterable<Post> allPost = postService.findPostByPosterId(posterId);
+        List<Post> postList = new ArrayList<>();
+        allPost.forEach(postList::add);
+        List<Post> limitedPost = new ArrayList<>();
+        for (int i = fromIndex; i < fromIndex + 5 && i < postList.size() ; i++) {
+            limitedPost.add(postList.get(i));
+        }
+        return new ResponseEntity<>(limitedPost, HttpStatus.OK);
     }
 }

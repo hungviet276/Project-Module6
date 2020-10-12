@@ -53,7 +53,6 @@ public class RelatioshipController {
       Relationship relationship = relationshipService.findRelationshipByRelatingUserIdAndRelatedUserId(user.getUserId(),relatedId);
       relationship.setStatus(statusService.findStatusById(statusId));
       return new ResponseEntity<>(relationshipService.saveRelationship(relationship), HttpStatus.OK);
-
     }
 
     @PutMapping("/unfriend/{relatedId}/{statusId}")
@@ -109,6 +108,5 @@ public class RelatioshipController {
         }else relationship = null;
         return relationship;
     }
-
 
 }

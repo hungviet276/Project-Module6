@@ -9,16 +9,16 @@ public class LikeComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long commenterId;
+    private Long commentId;
 
     private Long likerId;
 
     public LikeComment() {
     }
 
-    public LikeComment(Long id, Long commenterId, Long likerId) {
+    public LikeComment(Long id, Long commentId, Long likerId) {
         this.id = id;
-        this.commenterId = commenterId;
+        this.commentId = commentId;
         this.likerId = likerId;
     }
 
@@ -30,12 +30,12 @@ public class LikeComment {
         this.id = id;
     }
 
-    public Long getCommenterId() {
-        return commenterId;
+    public Long getCommentId() {
+        return commentId;
     }
 
-    public void setCommenterId(Long commenterId) {
-        this.commenterId = commenterId;
+    public void setCommentId(Long commenterId) {
+        this.commentId = commenterId;
     }
 
     public Long getLikerId() {

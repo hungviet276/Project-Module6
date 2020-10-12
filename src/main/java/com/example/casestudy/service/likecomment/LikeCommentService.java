@@ -31,4 +31,10 @@ public class LikeCommentService implements ILikeCommentService {
     public LikeComment findLikeCommentById(Long id) {
         return likeCommentRepository.getOne(id);
     }
+
+    @Override
+    public Iterable<LikeComment> findLikeCommentsByCommentId(Long id) {
+        return likeCommentRepository.findLikeCommentsByCommentId(id);
+    }
+
 }

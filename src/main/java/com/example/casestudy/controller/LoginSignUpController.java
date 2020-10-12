@@ -1,6 +1,5 @@
 package com.example.casestudy.controller;
 
-
 import com.example.casestudy.config.security.JwtUtils;
 import com.example.casestudy.model.ERole;
 import com.example.casestudy.model.RefreshToken;
@@ -16,7 +15,6 @@ import com.example.casestudy.repository.IUserRepository;
 import com.example.casestudy.service.refreshtoken.RefreshTokenService;
 import com.example.casestudy.service.user.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -119,6 +117,7 @@ public class LoginSignUpController {
 
         user.setUserAvatar("https://firebasestorage.googleapis.com/v0/b/porject-module6-vh2.appspot.com/o/wp3313545%20-%20Copy.jpg?alt=media&token=f870ab79-247d-4b39-88c6-454fb39557f1");
         user.setUserCoverPhoto("https://firebasestorage.googleapis.com/v0/b/porject-module6-vh2.appspot.com/o/wp3313545.jpg?alt=media&token=353b7206-321a-4eee-b845-36015a19c37e");
+        user.setDateOfBirth("--");
         user.setRoles(roles);
         userRepository.save(user);
 
